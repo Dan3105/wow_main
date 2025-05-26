@@ -1,44 +1,48 @@
 import {
   Sidebar,
+  SidebarHeader,
   SidebarContent,
-  SidebarFooter,
   SidebarGroup,
   SidebarGroupLabel,
-  SidebarHeader,
-  SidebarMenuButton,
+  SidebarFooter,
   SidebarMenuItem,
+  SidebarMenuButton,
 } from "@/components/ui/sidebar";
-import { Home } from "lucide-react";
-import { ProjectSubSidebar } from "./project-sub-sidebar/project-sub-sidebar";
 
-const menu_configs = [
-  {
-    title: "Home",
-    url: "#",
-    icon: Home,
-  },
-];
+export default function ProjectSidebar({
+  projectId,
+  nameSidebar,
+}: {
+  projectId: string;
+  nameSidebar: string;
+}) {
+  const feature_functions = [
+    {
+      title: "UI Building",
+      url: `/project/${projectId}/builder`,
+    },
+  ];
 
-export function AppSidebar({ nameSidebar }: { nameSidebar: string }) {
   return (
-    <Sidebar name={nameSidebar}>
+    <Sidebar name={`${nameSidebar}`}>
       <SidebarHeader />
       <SidebarContent>
         <SidebarGroup />
-        <SidebarGroupLabel>Main Section</SidebarGroupLabel>
-        {menu_configs.map((item) => (
+        <SidebarGroupLabel>
+          <a href={`/project/${projectId}`}>
+            <span>Main Section</span>
+          </a>
+        </SidebarGroupLabel>
+        {feature_functions.map((item) => (
           <SidebarMenuItem key={item.title}>
             <SidebarMenuButton asChild>
               <a href={item.url}>
-                <item.icon />
                 <span>{item.title}</span>
               </a>
             </SidebarMenuButton>
           </SidebarMenuItem>
         ))}
         <SidebarGroup />
-
-        <ProjectSubSidebar />
       </SidebarContent>
       <SidebarFooter />
     </Sidebar>

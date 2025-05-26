@@ -7,14 +7,15 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const namesidebar = "main-sidebar";
   return (
     <div>
-      <SidebarProvider>
+      <SidebarProvider sidebarNames={[namesidebar]}>
         <TanstackProvider>
-          <AppSidebar />
+          <AppSidebar nameSidebar={namesidebar} />
         </TanstackProvider>
         <main>
-          <SidebarTrigger />
+          <SidebarTrigger name={namesidebar} />
           {children}
         </main>
       </SidebarProvider>

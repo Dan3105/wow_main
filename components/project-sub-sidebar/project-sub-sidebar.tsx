@@ -36,35 +36,37 @@ export function ProjectSubSidebar() {
         projects.map((project) => (
           <SidebarMenuItem key={project.id}>
             <SidebarMenuButton asChild>
-              <div className="flex items-center justify-between w-full">
-                <a
-                  href={`/projects/${project.id}`}
-                  className="flex items-center gap-2"
-                >
-                  <FileCode />
-                  <span className="truncate">{project.name}</span>
-                </a>
-                <div className="flex items-center gap-1">
-                  <button
-                    onClick={(e) => {
-                      e.preventDefault();
-                    }}
-                    className="p-1 hover:bg-blue-300 transition-colors rounded-sm"
-                  >
-                    Edit
-                  </button>
-                  <button
-                    onClick={(e) => {
-                      e.preventDefault();
-                      deleteHandler(project.id);
-                    }}
-                    disabled={isPending}
-                    className="p-1 hover:bg-destructive hover:text-white transition-colors rounded-sm disabled:opacity-50 disabled:cursor-not-allowed"
-                  >
-                    {isPending ? "Deleting..." : "Delete"}
-                  </button>
+              <a
+                href={`/project/${project.id}`}
+                className="flex items-center gap-2"
+              >
+                <div className="flex items-center justify-between w-full">
+                  <div className="flex items-center gap-2">
+                    <FileCode />
+                    <span className="truncate">{project.name}</span>
+                  </div>
+                  <div className="flex items-center gap-1">
+                    <button
+                      onClick={(e) => {
+                        e.preventDefault();
+                      }}
+                      className="p-1 hover:bg-blue-300 transition-colors rounded-sm"
+                    >
+                      Edit
+                    </button>
+                    <button
+                      onClick={(e) => {
+                        e.preventDefault();
+                        deleteHandler(project.id);
+                      }}
+                      disabled={isPending}
+                      className="p-1 hover:bg-destructive hover:text-white transition-colors rounded-sm disabled:opacity-50 disabled:cursor-not-allowed"
+                    >
+                      {isPending ? "Deleting..." : "Delete"}
+                    </button>
+                  </div>
                 </div>
-              </div>
+              </a>
             </SidebarMenuButton>
           </SidebarMenuItem>
         ))
